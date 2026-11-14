@@ -1,0 +1,18 @@
+{
+  "name": "denta-clinic",
+  "version": "1.0.0",
+  "private": true,
+  "description": "قالب اختصاصی کلینیک دندانپزشکی دنتا — Next.js + GitHub Pages",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test:smoke": "node scripts/smoke.mjs"
+  },
+  "dependencies": {
+    "next": "14.2.15",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}

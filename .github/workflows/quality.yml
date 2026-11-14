@@ -1,0 +1,35 @@
+name: Quality checks
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Smoke test the export
+        run: npm run test:smoke
+
+      - name: Lighthouse audit
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          staticDistDir: ./out
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
